@@ -5,7 +5,7 @@ Plugin URI: http://woobizz.com
 Description: Hide coupon on checkout page
 Author: Woobizz
 Author URI: http://woobizz.com
-Version: 1.0.1
+Version: 1.0.0
 Text Domain: woobizzhook1
 Domain Path: /lang/
 */
