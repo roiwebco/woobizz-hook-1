@@ -36,7 +36,7 @@ function woobizzhook1_hide( $enabled ) {
 function woobizzhook1_admin_notice() {
     ?>
     <div class="notice notice-error is-dismissible">
-        <p><?php _e( 'Woobizz Hook 1 needs WooCommerce to work properly, If you do not use this plugin you can disable it!', 'woobizzhook1' ); ?></p>
+        <p><?php _e( 'Woobizz hook 1 needs woocommerce to work properly, please install and activate woocommerce or disable this plugin.', 'woobizzhook1' ); ?></p>
     </div>
     <?php
 }
