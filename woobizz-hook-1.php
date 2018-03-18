@@ -5,7 +5,7 @@ Plugin URI: http://woobizz.com
 Description: Hide coupon on checkout page
 Author: Woobizz
 Author URI: http://woobizz.com
-Version: 1.0.2
+Version: 1.0.3
 Text Domain: woobizzhook1
 Domain Path: /lang/
 */
@@ -19,18 +19,11 @@ function woobizzhook1_load_textdomain() {
 //Check if WooCommerce is active
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	//echo "woocommerce is active";
-    add_filter( 'woocommerce_coupons_enabled', 'woobizzhook1_hide' );
+	add_action( 'woocommerce_before_checkout_form', 'woobizzhook1_remove_checkout_coupon_form', 9 );
 }else{
 	//Show message on admin
 	//echo "woocommerce is not active";
 	add_action( 'admin_notices', 'woobizzhook1_admin_notice' );
-}
-//Add Hook 1
-function woobizzhook1_hide( $enabled ) {
-	if ( is_checkout() ) {
-		$enabled = false;
-	}
-	return $enabled;
 }
 //Hook1 Notice
 function woobizzhook1_admin_notice() {
@@ -39,4 +32,8 @@ function woobizzhook1_admin_notice() {
         <p><?php _e( 'Woobizz hook 1 needs woocommerce to work properly, please install and activate woocommerce or disable this plugin.', 'woobizzhook1' ); ?></p>
     </div>
     <?php
+}
+//Add Hook 1
+function woobizzhook1_remove_checkout_coupon_form(){
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 }
